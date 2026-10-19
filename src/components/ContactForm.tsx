@@ -9,11 +9,12 @@ import { useToast } from "./ui/use-toast";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
+import { config } from "@/data/config";
 
 const formSchema = z.object({
-  fullName: z.string().min(2, "Full name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  fullName: z.string().min(2, "O nome precisa ter pelo menos 2 caracteres"),
+  email: z.string().email("Informe um e-mail válido"),
+  message: z.string().min(10, "A mensagem precisa ter pelo menos 10 caracteres"),
 });
 
 type FieldErrors = Partial<Record<keyof z.infer<typeof formSchema>, string>>;
@@ -55,8 +56,8 @@ const ContactForm = () => {
         throw new Error(data.error || `Request failed (${res.status})`);
       }
       toast({
-        title: "Thank you!",
-        description: "I'll get back to you as soon as possible.",
+        title: "Mensagem enviada!",
+        description: "Obrigado pelo contato. Respondo o mais rápido possível.",
         variant: "default",
         className: cn("top-0 mx-auto flex fixed md:top-4 md:right-4"),
       });
@@ -70,8 +71,8 @@ const ContactForm = () => {
       }, 1000);
     } catch (err) {
       toast({
-        title: "Error",
-        description: "Something went wrong! Please try again.",
+        title: "Não foi possível enviar",
+        description: `Tente de novo ou escreva direto para ${config.email}.`,
         className: cn(
           "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
         ),
@@ -84,10 +85,10 @@ const ContactForm = () => {
     <form className="min-w-7xl mx-auto sm:mt-4" onSubmit={handleSubmit} aria-busy={loading}>
       <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
         <LabelInputContainer>
-          <Label htmlFor="fullname">Full name</Label>
+          <Label htmlFor="fullname">Nome</Label>
           <Input
             id="fullname"
-            placeholder="Your Name"
+            placeholder="Seu nome"
             type="text"
             value={fullName}
             onChange={(e) => { setFullName(e.target.value); setErrors((p) => ({ ...p, fullName: undefined })); }}
@@ -95,10 +96,10 @@ const ContactForm = () => {
           {errors.fullName && <p className="text-sm text-red-500">{errors.fullName}</p>}
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Email Address</Label>
+          <Label htmlFor="email">E-mail</Label>
           <Input
             id="email"
-            placeholder="you@example.com"
+            placeholder="voce@empresa.com"
             type="email"
             value={email}
             onChange={(e) => { setEmail(e.target.value); setErrors((p) => ({ ...p, email: undefined })); }}
@@ -107,16 +108,16 @@ const ContactForm = () => {
         </LabelInputContainer>
       </div>
       <div className="grid w-full gap-1.5 mb-4">
-        <Label htmlFor="content">Your Message</Label>
+        <Label htmlFor="content">Mensagem</Label>
         <Textarea
-          placeholder="Tell me about about your project,"
+          placeholder="Conte sobre a vaga ou o projeto"
           id="content"
           value={message}
           onChange={(e) => { setMessage(e.target.value); setErrors((p) => ({ ...p, message: undefined })); }}
         />
         {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
         <p className="text-sm text-muted-foreground">
-          I&apos;ll never share your data with anyone else. Pinky promise!
+          Seus dados são usados só para eu responder você.
         </p>
       </div>
       <Button
@@ -127,11 +128,11 @@ const ContactForm = () => {
         {loading ? (
           <div className="flex items-center justify-center">
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            <p>Please wait</p>
+            <p>Enviando...</p>
           </div>
         ) : (
           <div className="flex items-center justify-center">
-            Send Message <ChevronRight className="w-4 h-4 ml-4" />
+            Enviar mensagem <ChevronRight className="w-4 h-4 ml-4" />
           </div>
         )}
         <BottomGradient />

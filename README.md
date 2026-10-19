@@ -26,7 +26,7 @@ Abra [http://localhost:3000](http://localhost:3000).
 | `src/data/projects.tsx` | Projetos |
 | `public/Jonethon_Coutinho_Pereira_CV.pdf` | Currículo do botão de download |
 
-O formulário de contato foi trocado por contato direto (e-mail/LinkedIn). A rota `/api/send` continua no código e só envia e-mails se a variável `RESEND_API_KEY` estiver configurada.
+O formulário de contato envia e-mails pelo [Resend](https://resend.com) e precisa da variável de ambiente `RESEND_API_KEY` (no Vercel: Settings → Environment Variables). Sem ela, o formulário mostra uma mensagem pedindo para escrever direto por e-mail.
 
 ## Créditos
 

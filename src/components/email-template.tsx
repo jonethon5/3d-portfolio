@@ -12,8 +12,10 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   message,
 }) => (
   <div>
-    <h1>from: {fullName}!</h1>
-    <div className="text-red-500">{email} sent you a message</div>
-    <blockquote>{message}</blockquote>
+    <h1>Nova mensagem de {fullName}</h1>
+    <p>
+      E-mail: <a href={`mailto:${email}`}>{email}</a>
+    </p>
+    <blockquote style={{ whiteSpace: "pre-wrap" }}>{message}</blockquote>
   </div>
 );

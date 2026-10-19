@@ -20,20 +20,20 @@ function isRateLimited(ip: string): boolean {
 }
 
 const Email = z.object({
-  fullName: z.string().min(2, "Full name is invalid!"),
-  email: z.string().email({ message: "Email is invalid!" }),
-  message: z.string().min(10, "Message is too short!"),
+  fullName: z.string().min(2, "Nome inválido."),
+  email: z.string().email({ message: "E-mail inválido." }),
+  message: z.string().min(10, "Mensagem muito curta."),
 });
 export async function POST(req: Request) {
   // Created per request so the build does not require RESEND_API_KEY.
   if (!process.env.RESEND_API_KEY) {
-    return Response.json({ error: "Email is not configured." }, { status: 503 });
+    return Response.json({ error: "O envio de e-mail não está configurado." }, { status: 503 });
   }
   const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const ip = req.headers.get("x-forwarded-for") ?? "unknown";
     if (isRateLimited(ip)) {
-      return Response.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+      return Response.json({ error: "Muitas tentativas. Tente de novo em instantes." }, { status: 429 });
     }
 
     const body = await req.json();
@@ -46,9 +46,10 @@ export async function POST(req: Request) {
       return Response.json({ error: zodError?.message }, { status: 400 });
 
     const { data: resendData, error: resendError } = await resend.emails.send({
-      from: "Porfolio <onboarding@resend.dev>",
+      from: "Portfólio <onboarding@resend.dev>",
       to: [config.email],
-      subject: "Contact me from portfolio",
+      subject: `Contato pelo portfólio: ${zodData.fullName}`,
+      replyTo: zodData.email,
       react: EmailTemplate({
         fullName: zodData.fullName,
         email: zodData.email,
@@ -57,7 +58,7 @@ export async function POST(req: Request) {
     });
 
     if (resendError) {
-      return Response.json({ error: "Failed to send email" }, { status: 500 });
+      return Response.json({ error: "Falha ao enviar o e-mail." }, { status: 500 });
     }
 
     return Response.json(resendData);

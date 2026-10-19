@@ -14,8 +14,8 @@ import { Button } from "../ui/button";
 import { config } from "@/data/config";
 import { SectionHeader } from "./section-header";
 import SectionWrapper from "../ui/section-wrapper";
+import ContactForm from "../ContactForm";
 
-// Contato direto em vez do formulário: o ContactForm depende de RESEND_API_KEY.
 const ContactSection = () => {
   return (
     <SectionWrapper id="contact" className="min-h-screen max-w-7xl mx-auto ">
@@ -30,13 +30,19 @@ const ContactSection = () => {
             <CardTitle className="text-3xl md:text-4xl">Contato</CardTitle>
             <CardDescription>
               Estou buscando minha primeira vaga como desenvolvedor backend
-              júnior. A forma mais rápida de falar comigo é por e-mail ou
-              LinkedIn.
+              júnior. Mande uma mensagem pelo formulário ou fale comigo
+              direto por e-mail ou LinkedIn.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-3">
+            <ContactForm />
+            <div className="my-2 flex items-center gap-3 text-xs text-muted-foreground">
+              <span className="h-px flex-1 bg-border" />
+              ou fale direto
+              <span className="h-px flex-1 bg-border" />
+            </div>
             <Link href={`mailto:${config.email}`} className="w-full">
-              <Button className="w-full gap-3">
+              <Button variant={"outline"} className="w-full gap-3">
                 <Mail size={20} className="shrink-0" />
                 Enviar e-mail
               </Button>
