@@ -3,7 +3,6 @@ import { config } from "@/data/config";
 import { Resend } from "resend";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 const rateLimit = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT_MAX = 3;
@@ -26,6 +25,11 @@ const Email = z.object({
   message: z.string().min(10, "Message is too short!"),
 });
 export async function POST(req: Request) {
+  // Created per request so the build does not require RESEND_API_KEY.
+  if (!process.env.RESEND_API_KEY) {
+    return Response.json({ error: "Email is not configured." }, { status: 503 });
+  }
+  const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const ip = req.headers.get("x-forwarded-for") ?? "unknown";
     if (isRateLimited(ip)) {

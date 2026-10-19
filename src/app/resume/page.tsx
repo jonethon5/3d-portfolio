@@ -1,9 +1,9 @@
 import ResumeView from "./resume-view";
+import { config } from "@/data/config";
 
 export const metadata = {
-  title: "Résumé | Naresh Khatri",
-  description:
-    "Résumé of Naresh Khatri — Senior Full-Stack Engineer. View online or download the PDF.",
+  title: `Currículo | ${config.author}`,
+  description: `Currículo de ${config.author} — Desenvolvedor Backend. Veja online ou baixe o PDF.`,
 };
 
 export default function ResumePage() {

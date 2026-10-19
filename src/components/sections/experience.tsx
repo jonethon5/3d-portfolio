@@ -14,8 +14,8 @@ const ExperienceSection = () => {
       <div className="w-full max-w-4xl px-4 md:px-8 mx-auto">
         <SectionHeader
           id="experience"
-          title="Experience"
-          desc="My professional journey."
+          title="Experiência"
+          desc="Minha trajetória profissional."
           className="mb-12 md:mb-20 mt-0"
         />
 
@@ -93,7 +93,7 @@ const ExperienceCard = ({
                   <img
                     src={skill.icon}
                     alt={skill.label}
-                    className="w-3.5 h-3.5 object-contain opacity-80"
+                    className={cn("w-3.5 h-3.5 object-contain opacity-80", skill.iconClassName)}
                   />
                   {skill.label}
                 </Badge>

@@ -31,7 +31,7 @@ export default function KeyboardScene({ maxDpr }: { maxDpr: number }) {
   const playSound = useKeyboardSounds();
   const scene = useMemo(() => createKeyboardScene(Object.values(SKILLS).map((skill) => ({
     ...skill, icon: skill.keyboardIcon ?? skill.icon,
-  }))), []);
+  })), 4), []);
   const { settings: graphics, markActive } = useAdaptiveGraphics(ready && !isLoading);
   const { shadows, softShadows, ao, bloom, lighting } = graphics;
   const environment = useMemo(() => ({
@@ -157,9 +157,9 @@ export default function KeyboardScene({ maxDpr }: { maxDpr: number }) {
       {section === "skills" && ready && (
         <div className="pointer-events-none fixed inset-x-4 bottom-8 text-center text-foreground">
           <div aria-live="polite" className="sr-only">
-            <p className="text-xl font-semibold">{selected?.label ?? "Explore my skills"}</p>
+            <p className="text-xl font-semibold">{selected?.label ?? "Minhas skills"}</p>
             <p className="mt-1 text-sm text-muted-foreground">
-              {selected?.shortDescription ?? "Hover, tap, or press a letter key"}
+              {selected?.shortDescription ?? "Toque ou aperte uma tecla"}
             </p>
           </div>
           <a

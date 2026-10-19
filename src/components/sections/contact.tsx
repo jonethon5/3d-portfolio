@@ -1,5 +1,8 @@
 "use client";
 import React from "react";
+import Link from "next/link";
+import { Mail } from "lucide-react";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 import {
   Card,
   CardContent,
@@ -7,37 +10,54 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import ContactForm from "../ContactForm";
+import { Button } from "../ui/button";
 import { config } from "@/data/config";
 import { SectionHeader } from "./section-header";
 import SectionWrapper from "../ui/section-wrapper";
 
+// Contato direto em vez do formulário: o ContactForm depende de RESEND_API_KEY.
 const ContactSection = () => {
   return (
     <SectionWrapper id="contact" className="min-h-screen max-w-7xl mx-auto ">
       <SectionHeader id='contact' className="relative mb-14" title={
         <>
-          LET&apos;S WORK <br />
-          TOGETHER
+          VAMOS <br />
+          CONVERSAR
         </>} />
       <div className="grid grid-cols-1 md:grid-cols-2 z-[9999] mx-4">
-        <Card className="min-w-7xl bg-white/70 dark:bg-black/70 backdrop-blur-sm rounded-xl mt-10 md:mt-20">
+        <Card className="bg-white/70 dark:bg-black/70 backdrop-blur-sm rounded-xl mt-10 md:mt-20">
           <CardHeader>
-            <CardTitle className="text-4xl">Contact Form</CardTitle>
+            <CardTitle className="text-3xl md:text-4xl">Contato</CardTitle>
             <CardDescription>
-              Please contact me directly at{" "}
-              <a
-                target="_blank"
-                href={`mailto:${config.email}`}
-                className="text-gray-200 cursor-can-hover rounded-lg"
-              >
-                {config.email.replace(/@/g, "(at)")}
-              </a>{" "}
-              or drop your info here.
+              Estou buscando minha primeira vaga como desenvolvedor backend
+              júnior. A forma mais rápida de falar comigo é por e-mail ou
+              LinkedIn.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <ContactForm />
+          <CardContent className="flex flex-col gap-3">
+            <Link href={`mailto:${config.email}`} className="w-full">
+              <Button className="w-full gap-3">
+                <Mail size={20} className="shrink-0" />
+                Enviar e-mail
+              </Button>
+            </Link>
+            <p className="text-center text-sm text-muted-foreground break-all select-all">
+              {config.email}
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              <Link href={config.social.linkedin} target="_blank">
+                <Button variant={"outline"} className="w-full gap-2">
+                  <SiLinkedin size={18} />
+                  LinkedIn
+                </Button>
+              </Link>
+              <Link href={config.social.github} target="_blank">
+                <Button variant={"outline"} className="w-full gap-2">
+                  <SiGithub size={18} />
+                  GitHub
+                </Button>
+              </Link>
+            </div>
           </CardContent>
         </Card>
       </div>

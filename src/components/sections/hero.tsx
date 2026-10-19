@@ -11,7 +11,7 @@ import {
 import { usePreloader } from "../preloader";
 import { BlurIn, BoxReveal } from "../reveal-animations";
 import ScrollDownIcon from "../scroll-down-icon";
-import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 import { config } from "@/data/config";
 
 import SectionWrapper from "../ui/section-wrapper";
@@ -27,12 +27,28 @@ const HeroSection = () => {
             "h-[calc(100dvh-3rem)] md:h-[calc(100dvh-4rem)] z-[2]",
             "col-span-1",
             "flex flex-col justify-start md:justify-center items-center md:items-start",
-            "pt-28 sm:pb-16 md:p-20 lg:p-24 xl:p-28"
+            "px-4 pt-28 sm:pb-16 md:p-20 lg:p-24 xl:p-28"
           )}
         >
           {!isLoading && (
             <div className="flex flex-col">
               <div>
+                <BlurIn delay={0.5}>
+                  <div
+                    aria-label={config.author}
+                    role="img"
+                    className={cn(
+                      "mb-2 flex size-16 md:size-20 items-center justify-center rounded-full",
+                      "bg-gradient-to-br from-emerald-500 to-sky-600 ring-2 ring-white/20",
+                      "font-display text-xl md:text-2xl font-bold text-white select-none"
+                    )}
+                  >
+                    {config.author
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
+                </BlurIn>
                 <BlurIn delay={0.7}>
                   <p
                     className={cn(
@@ -40,7 +56,7 @@ const HeroSection = () => {
                       "cursor-default sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
                     )}
                   >
-                    Hi, I am
+                    Olá, eu sou
                     <br className="md:hidden" />
                   </p>
                 </BlurIn>
@@ -51,7 +67,7 @@ const HeroSection = () => {
                       <h1
                         className={cn(
                           "-ml-[6px] leading-none text-transparent text-slate-800 text-left",
-                          "font-bold text-7xl md:text-7xl lg:text-8xl xl:text-9xl",
+                          "font-bold text-5xl min-[400px]:text-6xl md:text-6xl lg:text-7xl xl:text-8xl",
                           "cursor-default text-edge-outline font-display "
                         )}
                       >
@@ -64,7 +80,7 @@ const HeroSection = () => {
                       side="top"
                       className="dark:bg-white dark:text-black"
                     >
-                      theres something waiting for you in devtools
+                      tem algo esperando por você no DevTools
                     </TooltipContent>
                   </Tooltip>
                 </BlurIn>
@@ -76,22 +92,25 @@ const HeroSection = () => {
                       "cursor-default sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
                     )}
                   >
-                    A Full Stack Web Developer
+                    Desenvolvedor Backend
+                  </p>
+                </BlurIn>
+                <BlurIn delay={1.3}>
+                  <p className="mt-2 max-w-[calc(100vw-2rem)] sm:max-w-md font-medium text-sm sm:text-base text-slate-500 dark:text-zinc-400">
+                    {config.description.short}
                   </p>
                 </BlurIn>
               </div>
               <div className="mt-8 flex flex-col gap-3 w-fit">
                 <Link
-                  href={
-                    "https://drive.google.com/file/d/1MTSsUA8V7Po2AsNXT8kZ5sLOpzC8l7qm/view?usp=sharing"
-                  }
+                  href={config.resume}
                   target="_blank"
                   className="flex-1"
                 >
                   <BoxReveal delay={2} width="100%" >
                     <Button className="flex items-center gap-2 w-full">
                       <File size={24} />
-                      <p>Resume</p>
+                      <p>Currículo (PDF)</p>
                     </Button>
                   </BoxReveal>
                 </Link>
@@ -103,7 +122,7 @@ const HeroSection = () => {
                           variant={"outline"}
                           className="block w-full overflow-hidden"
                         >
-                          Hire Me
+                          Fale comigo
                         </Button>
                       </Link>
                     </TooltipTrigger>
@@ -112,14 +131,6 @@ const HeroSection = () => {
                     </TooltipContent>
                   </Tooltip>
                   <div className="flex items-center h-full gap-2">
-                    <Link
-                      href={config.social.twitter}
-                      target="_blank"
-                    >
-                      <Button variant={"outline"}>
-                        <SiX size={24} />
-                      </Button>
-                    </Link>
                     <Link
                       href={config.social.github}
                       target="_blank"

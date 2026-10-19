@@ -128,7 +128,7 @@ export function createKeyboardScene(skills: readonly KeyboardSkill[], columns = 
       visible: true, castShadow: false, receiveShadow: false, children: [] }, id);
     return id;
   };
-  const defaultLabelId = label("Explore my skills", "Hover, tap, or press a letter key");
+  const defaultLabelId = label("Minhas skills", "Toque ou aperte uma tecla");
   doc.nodes[defaultLabelId].visible = true;
   const keys = skills.map((skill, index): KeyboardKey => {
     // separate groups let placement, motion, and presses compose
