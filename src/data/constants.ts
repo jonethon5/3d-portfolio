@@ -1,5 +1,6 @@
 export enum SkillNames {
   JS = "js",
+  TS = "ts",
   HTML = "html",
   CSS = "css",
   NODEJS = "nodejs",
@@ -13,7 +14,6 @@ export enum SkillNames {
   GITHUB_ACTIONS = "github-actions",
   GIT = "git",
   VSCODE = "vscode",
-  POSTMAN = "postman",
   CLAUDE_CODE = "claude-code",
 }
 export type Skill = {
@@ -33,7 +33,6 @@ export type Skill = {
   shortcut?: string;
 };
 const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
-// Key order fills the 4-column keyboard roughly one category per row.
 export const SKILLS: Record<SkillNames, Skill> = {
   [SkillNames.JS]: {
     id: 1,
@@ -45,8 +44,18 @@ export const SKILLS: Record<SkillNames, Skill> = {
     keyboardIcon: "/assets/keyboard/logos/js.svg",
     keyboardColor: "#ff9408",
   },
-  [SkillNames.HTML]: {
+  [SkillNames.TS]: {
     id: 2,
+    name: "ts",
+    label: "TypeScript",
+    shortDescription: "adotado no backend de um projeto do estágio",
+    color: "#007acc",
+    icon: `${DEVICON}/typescript/typescript-original.svg`,
+    keyboardIcon: "/assets/keyboard/logos/ts.svg",
+    keyboardColor: "#008fd5",
+  },
+  [SkillNames.HTML]: {
+    id: 3,
     name: "html",
     label: "HTML",
     shortDescription: "estrutura das interfaces do ERP",
@@ -56,7 +65,7 @@ export const SKILLS: Record<SkillNames, Skill> = {
     keyboardColor: "#ff480a",
   },
   [SkillNames.CSS]: {
-    id: 3,
+    id: 4,
     name: "css",
     label: "CSS",
     shortDescription: "estilo e layout das interfaces",
@@ -66,17 +75,17 @@ export const SKILLS: Record<SkillNames, Skill> = {
     keyboardColor: "#633595",
   },
   [SkillNames.NODEJS]: {
-    id: 4,
+    id: 5,
     name: "nodejs",
     label: "Node.js",
-    shortDescription: "a base dos meus backends: APIs REST, jobs agendados e integrações",
+    shortDescription: "APIs REST, jobs agendados e integrações",
     color: "#6cc24a",
     icon: `${DEVICON}/nodejs/nodejs-original.svg`,
     keyboardIcon: "/assets/keyboard/logos/nodejs.svg",
     keyboardColor: "#00952c",
   },
   [SkillNames.EXPRESS]: {
-    id: 5,
+    id: 6,
     name: "express",
     label: "Express",
     shortDescription: "rotas, middlewares e APIs REST",
@@ -87,7 +96,7 @@ export const SKILLS: Record<SkillNames, Skill> = {
     keyboardColor: "#343638",
   },
   [SkillNames.POSTGRES]: {
-    id: 6,
+    id: 7,
     name: "postgres",
     label: "PostgreSQL",
     shortDescription: "transações e SELECT FOR UPDATE no Stock Ledger",
@@ -97,7 +106,7 @@ export const SKILLS: Record<SkillNames, Skill> = {
     keyboardColor: "#146888",
   },
   [SkillNames.KNEX]: {
-    id: 7,
+    id: 8,
     name: "knex",
     label: "Knex",
     shortDescription: "query builder e migrations no Stock Ledger",
@@ -107,7 +116,7 @@ export const SKILLS: Record<SkillNames, Skill> = {
     keyboardColor: "#d26b38",
   },
   [SkillNames.MYSQL]: {
-    id: 8,
+    id: 9,
     name: "mysql",
     label: "MySQL / MariaDB",
     shortDescription: "banco do ERP em produção no estágio",
@@ -118,17 +127,17 @@ export const SKILLS: Record<SkillNames, Skill> = {
     keyboardColor: "#00758f",
   },
   [SkillNames.SEQUELIZE]: {
-    id: 9,
+    id: 10,
     name: "sequelize",
     label: "Sequelize",
-    shortDescription: "ORM do ERP: produtos, anúncios, vendas e reconciliação",
+    shortDescription: "ORM do ERP em produção no estágio",
     color: "#52b0e7",
     icon: `${DEVICON}/sequelize/sequelize-original.svg`,
     keyboardIcon: "/assets/keyboard/logos/sequelize.svg",
     keyboardColor: "#2f7fc0",
   },
   [SkillNames.JEST]: {
-    id: 10,
+    id: 11,
     name: "jest",
     label: "Jest",
     shortDescription: "testes de integração contra um banco real, sem mocks",
@@ -138,7 +147,7 @@ export const SKILLS: Record<SkillNames, Skill> = {
     keyboardColor: "#c21325",
   },
   [SkillNames.DOCKER]: {
-    id: 11,
+    id: 12,
     name: "docker",
     label: "Docker",
     shortDescription: "ambientes reproduzíveis com Docker Compose",
@@ -148,17 +157,17 @@ export const SKILLS: Record<SkillNames, Skill> = {
     keyboardColor: "#009fe8",
   },
   [SkillNames.GITHUB_ACTIONS]: {
-    id: 12,
+    id: 13,
     name: "github-actions",
     label: "GitHub Actions",
-    shortDescription: "CI/CD com migrations automatizadas e deploy em menos de 1 minuto",
+    shortDescription: "CI/CD com migrations e deploy automatizados",
     color: "#2088ff",
     icon: `${DEVICON}/githubactions/githubactions-original.svg`,
     keyboardIcon: "/assets/keyboard/logos/githubactions.svg",
     keyboardColor: "#2088ff",
   },
   [SkillNames.GIT]: {
-    id: 13,
+    id: 14,
     name: "git",
     label: "Git",
     shortDescription: "branches por feature, Pull Requests e code review",
@@ -168,7 +177,7 @@ export const SKILLS: Record<SkillNames, Skill> = {
     keyboardColor: "#ff4622",
   },
   [SkillNames.VSCODE]: {
-    id: 14,
+    id: 15,
     name: "vscode",
     label: "VS Code",
     shortDescription: "editor do dia a dia",
@@ -176,16 +185,6 @@ export const SKILLS: Record<SkillNames, Skill> = {
     icon: `${DEVICON}/vscode/vscode-original.svg`,
     keyboardIcon: "/assets/keyboard/logos/vscode.svg",
     keyboardColor: "#007acc",
-  },
-  [SkillNames.POSTMAN]: {
-    id: 15,
-    name: "postman",
-    label: "Postman",
-    shortDescription: "testar e documentar APIs e integrações",
-    color: "#ff6c37",
-    icon: `${DEVICON}/postman/postman-original.svg`,
-    keyboardIcon: "/assets/keyboard/logos/postman.svg",
-    keyboardColor: "#ff6c37",
   },
   [SkillNames.CLAUDE_CODE]: {
     id: 16,
@@ -208,7 +207,7 @@ export type SkillCategory = {
 };
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
-  { title: "Linguagem", items: [SkillNames.JS] },
+  { title: "Linguagem", items: [SkillNames.JS, SkillNames.TS] },
   { title: "Backend", items: [SkillNames.NODEJS, SkillNames.EXPRESS] },
   {
     title: "Banco de dados e ORM",
@@ -243,7 +242,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   { title: "Frontend básico", items: [SkillNames.HTML, SkillNames.CSS] },
   {
     title: "Ferramentas",
-    items: [SkillNames.VSCODE, SkillNames.POSTMAN, SkillNames.CLAUDE_CODE],
+    items: [SkillNames.VSCODE, SkillNames.CLAUDE_CODE],
   },
 ];
 
@@ -275,6 +274,7 @@ export const EXPERIENCE: Experience[] = [
     ],
     skills: [
       SkillNames.NODEJS,
+      SkillNames.TS,
       SkillNames.EXPRESS,
       SkillNames.MYSQL,
       SkillNames.SEQUELIZE,

@@ -102,9 +102,10 @@ const HeroSection = () => {
                 </BlurIn>
               </div>
               <div className="mt-8 flex flex-col gap-3 w-fit">
-                <Link
+                <a
                   href={config.resume}
                   target="_blank"
+                  rel="noopener"
                   className="flex-1"
                 >
                   <BoxReveal delay={2} width="100%" >
@@ -113,7 +114,7 @@ const HeroSection = () => {
                       <p>Currículo (PDF)</p>
                     </Button>
                   </BoxReveal>
-                </Link>
+                </a>
                 <div className="md:self-start flex gap-3">
                   <Tooltip delayDuration={300}>
                     <TooltipTrigger asChild>
