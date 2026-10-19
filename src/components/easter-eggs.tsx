@@ -20,10 +20,10 @@ const EasterEggs = () => {
     if (typeof console !== "undefined") {
       console.clear();
       console.log(
-        "%cWhoa, look at you! 🕵️‍♂️\n" +
-          "You seem to have discovered the secret console! 🔍\n" +
-          "Want to see some magic? ✨\n" +
-          "Just type %cmy first name%c and hit enter! 🎩🐇",
+        "%cOpa, olha só você! 🕵️‍♂️\n" +
+          "Parece que você descobriu o console secreto! 🔍\n" +
+          "Quer ver uma mágica? ✨\n" +
+          "É só digitar %cmeu primeiro nome%c e apertar Enter! 🎩🐇",
         //   "Just press the %c'n'%c key and watch the magic happen! 🪄",
         "color: #FFD700; font-size: 16px; font-weight: bold; background-color: black; padding: 10px; border-radius: 10px; margin-top:20px",
         "color: #00FF00; font-size: 16px; font-weight: bold; background-color: black; padding: 10px; border-radius: 10px; margin-top:20px",
@@ -37,8 +37,8 @@ const EasterEggs = () => {
           get() {
             console.log(
               "%c✨ Abra Kadabra! ✨\n\n" +
-                "You just summoned the magic of Jonethon! 🧙‍♂️\n" +
-                "What??? youre not impressed? Fine, but remember: With great power comes great responsibility! 💻⚡",
+                "Você acabou de invocar a magia do Jonethon! 🧙‍♂️\n" +
+                "O quê??? Não ficou impressionado? Tudo bem, mas lembre-se: com grandes poderes vêm grandes responsabilidades! 💻⚡",
 
               "color: #FF4500; font-size: 18px; font-weight: bold; background-color: black; padding: 10px; border-radius: 10px; margin-top:10px"
             );
@@ -46,7 +46,7 @@ const EasterEggs = () => {
             const timer = setTimeout(() => {
               console.log(
                 "%cPssttt! 🤫\n\n" +
-                  "Do you like cats?? 😺 If yes, then press 'n' on viewport and see what happens! 🐱✨",
+                  "Você gosta de gatos?? 😺 Se sim, aperte 'n' na página e veja o que acontece! 🐱✨",
                 "color: #FF69B4; font-size: 16px; font-weight: bold; background-color: black; padding: 10px; border-radius: 10px;"
               );
               clearTimeout(timer);
